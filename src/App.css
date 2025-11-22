@@ -181,8 +181,11 @@
 }
 
 .choice-button.selected {
-  border-color: white;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  border-color: #ffffff;
+  border-width: 4px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);
+  transform: scale(1.03);
+  filter: brightness(1.15);
 }
 
 .choice-button.correct {
