@@ -1,0 +1,656 @@
+{
+  "title": "British America",
+  "questions": [
+    {
+      "question": "Who was the bridge between the Powhatan and Jamestown?",
+      "choices": [
+        {
+          "text": "Pocahontas",
+          "isCorrect": true
+        },
+        {
+          "text": "Sacagawea",
+          "isCorrect": false
+        },
+        {
+          "text": "Anne Hutchinson",
+          "isCorrect": false
+        },
+        {
+          "text": "Deborah Sampson",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "What was the first successful British colony in North America?",
+      "choices": [
+        {
+          "text": "Jamestown",
+          "isCorrect": true
+        },
+        {
+          "text": "Roanoke",
+          "isCorrect": false
+        },
+        {
+          "text": "Plymouth",
+          "isCorrect": false
+        },
+        {
+          "text": "Quebec",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "What was the Puritan name for their church?",
+      "choices": [
+        {
+          "text": "The Congregationalist Church",
+          "isCorrect": true
+        },
+        {
+          "text": "The Anglican Church",
+          "isCorrect": false
+        },
+        {
+          "text": "The Presbyterian Church",
+          "isCorrect": false
+        },
+        {
+          "text": "The Quaker Meetinghouse",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Who founded Rhode Island after dissenting from the Puritan rulers of Massachusetts?",
+      "choices": [
+        {
+          "text": "Roger Williams",
+          "isCorrect": true
+        },
+        {
+          "text": "John Winthrop",
+          "isCorrect": false
+        },
+        {
+          "text": "William Bradford",
+          "isCorrect": false
+        },
+        {
+          "text": "Thomas Hooker",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Which English King was beheaded following the English Civil War?",
+      "choices": [
+        {
+          "text": "Charles I",
+          "isCorrect": true
+        },
+        {
+          "text": "James II",
+          "isCorrect": false
+        },
+        {
+          "text": "George I",
+          "isCorrect": false
+        },
+        {
+          "text": "Henry VIII",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Who was the first woman accused of witchcraft in Salem?",
+      "choices": [
+        {
+          "text": "Tituba",
+          "isCorrect": true
+        },
+        {
+          "text": "Sarah Good",
+          "isCorrect": false
+        },
+        {
+          "text": "Bridget Bishop",
+          "isCorrect": false
+        },
+        {
+          "text": "Ann Putnam",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Who was the Native American Chief who allied the Wampanoag to the Pilgrims?",
+      "choices": [
+        {
+          "text": "Massasoit",
+          "isCorrect": true
+        },
+        {
+          "text": "Metacom",
+          "isCorrect": false
+        },
+        {
+          "text": "Powhatan",
+          "isCorrect": false
+        },
+        {
+          "text": "Sachem Uncas",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Who was the family who founded and controlled Maryland?",
+      "choices": [
+        {
+          "text": "The Calverts",
+          "isCorrect": true
+        },
+        {
+          "text": "The Penns",
+          "isCorrect": false
+        },
+        {
+          "text": "The Winthrops",
+          "isCorrect": false
+        },
+        {
+          "text": "The Lees",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Which group of Puritans argued for full separation from England and the Anglican Church?",
+      "choices": [
+        {
+          "text": "Pilgrims",
+          "isCorrect": true
+        },
+        {
+          "text": "Levellers",
+          "isCorrect": false
+        },
+        {
+          "text": "Quakers",
+          "isCorrect": false
+        },
+        {
+          "text": "Congregationalists",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Thomas Hooker broke with the Puritans over his belief in what?",
+      "choices": [
+        {
+          "text": "Full Male Suffrage",
+          "isCorrect": true
+        },
+        {
+          "text": "Religious Tolerance",
+          "isCorrect": false
+        },
+        {
+          "text": "Church-State Separation",
+          "isCorrect": false
+        },
+        {
+          "text": "Pacifism",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Which English company held a monopoly on the slave trade?",
+      "choices": [
+        {
+          "text": "The Royal African Company",
+          "isCorrect": true
+        },
+        {
+          "text": "The East India Company",
+          "isCorrect": false
+        },
+        {
+          "text": "The Hudson's Bay Company",
+          "isCorrect": false
+        },
+        {
+          "text": "The Virginia Company",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "What conflict in England saw Parliament supremacy established and reduced the monarchy to a figurehead?",
+      "choices": [
+        {
+          "text": "The Glorious Revolution",
+          "isCorrect": true
+        },
+        {
+          "text": "The English Civil War",
+          "isCorrect": false
+        },
+        {
+          "text": "The Reformation Crisis",
+          "isCorrect": false
+        },
+        {
+          "text": "The Restoration",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "John Sossamon's mysterious death sparked which major settler-native conflict?",
+      "choices": [
+        {
+          "text": "King Philip's War",
+          "isCorrect": true
+        },
+        {
+          "text": "The Pequot War",
+          "isCorrect": false
+        },
+        {
+          "text": "Pontiac's Rebellion",
+          "isCorrect": false
+        },
+        {
+          "text": "The Yamasee War",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Who introduced tobacco to North America?",
+      "choices": [
+        {
+          "text": "John Rolfe",
+          "isCorrect": true
+        },
+        {
+          "text": "Sir Walter Raleigh",
+          "isCorrect": false
+        },
+        {
+          "text": "William Bradford",
+          "isCorrect": false
+        },
+        {
+          "text": "Francis Drake",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Who outlined the ideas of moral and natural liberty for Puritans?",
+      "choices": [
+        {
+          "text": "John Winthrop",
+          "isCorrect": true
+        },
+        {
+          "text": "Roger Williams",
+          "isCorrect": false
+        },
+        {
+          "text": "Cotton Mather",
+          "isCorrect": false
+        },
+        {
+          "text": "Jonathan Edwards",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "What was the name of the promise made by Puritan ministers trying to bring people back to church?",
+      "choices": [
+        {
+          "text": "The Half-Way Covenant",
+          "isCorrect": true
+        },
+        {
+          "text": "The Great Awakening",
+          "isCorrect": false
+        },
+        {
+          "text": "The Toleration Act",
+          "isCorrect": false
+        },
+        {
+          "text": "The New Light Agreement",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "What document was the foundation of ideas of English liberty?",
+      "choices": [
+        {
+          "text": "The Magna Carta",
+          "isCorrect": true
+        },
+        {
+          "text": "The English Bill of Rights",
+          "isCorrect": false
+        },
+        {
+          "text": "The Petition of Right",
+          "isCorrect": false
+        },
+        {
+          "text": "The Mayflower Compact",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Which rebel leader overthrew Sir Edmund Andros and seized control of New York?",
+      "choices": [
+        {
+          "text": "Jacob Leisler",
+          "isCorrect": true
+        },
+        {
+          "text": "Nathaniel Bacon",
+          "isCorrect": false
+        },
+        {
+          "text": "Peter Stuyvesant",
+          "isCorrect": false
+        },
+        {
+          "text": "Edmund Morgan",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Pennsylvania treated natives well until which incident soured relations?",
+      "choices": [
+        {
+          "text": "The Walking Purchase",
+          "isCorrect": true
+        },
+        {
+          "text": "Pontiac's Rebellion",
+          "isCorrect": false
+        },
+        {
+          "text": "The Paxton Boys Riot",
+          "isCorrect": false
+        },
+        {
+          "text": "The Alienation Act",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "The House of Burgesses was the first what in Colonial America?",
+      "choices": [
+        {
+          "text": "Elected Assembly",
+          "isCorrect": true
+        },
+        {
+          "text": "Tax Court",
+          "isCorrect": false
+        },
+        {
+          "text": "Royal Colony Council",
+          "isCorrect": false
+        },
+        {
+          "text": "Trade Board",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "The Mayflower Compact established what idea in Colonial America?",
+      "choices": [
+        {
+          "text": "Self Government",
+          "isCorrect": true
+        },
+        {
+          "text": "Religious Freedom",
+          "isCorrect": false
+        },
+        {
+          "text": "Trial by Jury",
+          "isCorrect": false
+        },
+        {
+          "text": "Separation of Powers",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "What was the name of the general assembly in Massachusetts?",
+      "choices": [
+        {
+          "text": "The General Court",
+          "isCorrect": true
+        },
+        {
+          "text": "The Burgesses Council",
+          "isCorrect": false
+        },
+        {
+          "text": "The Colonial Congress",
+          "isCorrect": false
+        },
+        {
+          "text": "The Royal Assembly",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Which group was established by England to manage colonial affairs?",
+      "choices": [
+        {
+          "text": "The Lords of Trade",
+          "isCorrect": true
+        },
+        {
+          "text": "The Privy Council",
+          "isCorrect": false
+        },
+        {
+          "text": "The Board of Admiralty",
+          "isCorrect": false
+        },
+        {
+          "text": "The Royal Governors",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Which rebellion pushed Virginia to become a slave society?",
+      "choices": [
+        {
+          "text": "Bacon's Rebellion",
+          "isCorrect": true
+        },
+        {
+          "text": "Shays' Rebellion",
+          "isCorrect": false
+        },
+        {
+          "text": "Stono Rebellion",
+          "isCorrect": false
+        },
+        {
+          "text": "Leisler's Rebellion",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "What conflict in New England saw the total destruction of one of its most powerful tribes?",
+      "choices": [
+        {
+          "text": "The Pequot War",
+          "isCorrect": true
+        },
+        {
+          "text": "King Philip's War",
+          "isCorrect": false
+        },
+        {
+          "text": "The Abenaki Struggle",
+          "isCorrect": false
+        },
+        {
+          "text": "The Narragansett War",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "What event shifted the balance of power between natives and settlers in Virginia?",
+      "choices": [
+        {
+          "text": "The Uprising of 1622",
+          "isCorrect": true
+        },
+        {
+          "text": "The Starving Time",
+          "isCorrect": false
+        },
+        {
+          "text": "Bacon's Rebellion",
+          "isCorrect": false
+        },
+        {
+          "text": "The Treaty of Albany",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Who was the Puritan ruler of England following the English Civil War?",
+      "choices": [
+        {
+          "text": "Oliver Cromwell",
+          "isCorrect": true
+        },
+        {
+          "text": "Charles II",
+          "isCorrect": false
+        },
+        {
+          "text": "William III",
+          "isCorrect": false
+        },
+        {
+          "text": "James I",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "The Sovereignty and Goodness of God by Mary Rowlandson is the most famous example of what kind of story?",
+      "choices": [
+        {
+          "text": "Captivity Narratives",
+          "isCorrect": true
+        },
+        {
+          "text": "Conversion Narratives",
+          "isCorrect": false
+        },
+        {
+          "text": "Exploration Journals",
+          "isCorrect": false
+        },
+        {
+          "text": "Travel Diaries",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Which English group was the first to argue for a written constitution?",
+      "choices": [
+        {
+          "text": "The Levellers",
+          "isCorrect": true
+        },
+        {
+          "text": "The Puritans",
+          "isCorrect": false
+        },
+        {
+          "text": "The Royalists",
+          "isCorrect": false
+        },
+        {
+          "text": "The Quakers",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "Which was the only New England colony that did not have their charter restored after William of Orange came to the throne?",
+      "choices": [
+        {
+          "text": "Massachusetts",
+          "isCorrect": true
+        },
+        {
+          "text": "Connecticut",
+          "isCorrect": false
+        },
+        {
+          "text": "Rhode Island",
+          "isCorrect": false
+        },
+        {
+          "text": "New Hampshire",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "question": "The Quakers were descended from which major Puritan dissenter's followers?",
+      "choices": [
+        {
+          "text": "Anne Hutchinson",
+          "isCorrect": true
+        },
+        {
+          "text": "Roger Williams",
+          "isCorrect": false
+        },
+        {
+          "text": "Thomas Hooker",
+          "isCorrect": false
+        },
+        {
+          "text": "John Cotton",
+          "isCorrect": false
+        }
+      ]
+    }
+  ]
+}
