@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import Confetti from "react-confetti";
 import type { Quiz } from "../models/Quiz";
 import { shuffleArray } from "../utils/quizUtils";
@@ -70,7 +70,7 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
     setShowResult(true);
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = useCallback(() => {
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedAnswer(null);
@@ -78,7 +78,28 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
       setShowConfetti(false);
       setIsCorrectAnswer(false);
     }
-  };
+  }, [currentQuestionIndex, totalQuestions]);
+
+  // Auto-advance after 3 seconds on correct answer
+  useEffect(() => {
+    if (
+      showResult &&
+      isCorrectAnswer &&
+      currentQuestionIndex < totalQuestions - 1
+    ) {
+      const timer = setTimeout(() => {
+        handleNextQuestion();
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [
+    showResult,
+    isCorrectAnswer,
+    currentQuestionIndex,
+    totalQuestions,
+    handleNextQuestion,
+  ]);
 
   const isQuizComplete =
     currentQuestionIndex === totalQuestions - 1 && showResult;
