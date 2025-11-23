@@ -78,6 +78,14 @@
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 2rem;
+  color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .quiz-stats {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+  }
 }
 
 .question-section {
@@ -228,6 +236,18 @@
   border: none;
   cursor: pointer;
   transition: transform 0.2s;
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .submit-button,
+  .next-button,
+  .finish-button {
+    background-color: #2980b9;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+  }
 }
 
 .submit-button:disabled {
