@@ -1,7 +1,17 @@
 // Create sound effects using Web Audio API
+
+// Type for webkit prefixed AudioContext
+interface WindowWithWebkit extends Window {
+  webkitAudioContext?: typeof AudioContext;
+}
+
 export const playCorrectSound = () => {
-  const audioContext = new (window.AudioContext ||
-    (window as any).webkitAudioContext)();
+  const AudioContextClass =
+    window.AudioContext || (window as WindowWithWebkit).webkitAudioContext;
+
+  if (!AudioContextClass) return;
+
+  const audioContext = new AudioContextClass();
 
   // Create a "duh duh" sound for correct answers - two quick notes
   const createNote = (startTime: number, frequency: number) => {
@@ -28,8 +38,12 @@ export const playCorrectSound = () => {
 };
 
 export const playIncorrectSound = () => {
-  const audioContext = new (window.AudioContext ||
-    (window as any).webkitAudioContext)();
+  const AudioContextClass =
+    window.AudioContext || (window as WindowWithWebkit).webkitAudioContext;
+
+  if (!AudioContextClass) return;
+
+  const audioContext = new AudioContextClass();
 
   // Create a light buzzer sound for incorrect answers
   const oscillator = audioContext.createOscillator();
