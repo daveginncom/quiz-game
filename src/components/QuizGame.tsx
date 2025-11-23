@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import Confetti from "react-confetti";
 import type { Quiz } from "../models/Quiz";
 import { shuffleArray } from "../utils/quizUtils";
+import { playCorrectSound, playIncorrectSound } from "../utils/soundEffects";
 import QuizHeader from "./QuizHeader";
 import QuizStats from "./QuizStats";
 import QuestionDisplay from "./QuestionDisplay";
@@ -41,29 +42,29 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
 
   const handleAnswerSelect = (choiceIndex: number) => {
     if (showResult) return;
+
+    // Immediately submit the answer when selected
     setSelectedAnswer(choiceIndex);
-  };
 
-  const handleSubmitAnswer = () => {
-    if (selectedAnswer === null) return;
-
-    const isCorrect = currentQuestion.choices[selectedAnswer].isCorrect;
+    const isCorrect = currentQuestion.choices[choiceIndex].isCorrect;
     setIsCorrectAnswer(isCorrect);
 
     if (isCorrect) {
       setCorrectCount(correctCount + 1);
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 3000);
+      playCorrectSound();
     } else {
       const correctChoice = currentQuestion.choices.find((c) => c.isCorrect);
       setWrongAnswers([
         ...wrongAnswers,
         {
           question: currentQuestion.question,
-          userAnswer: currentQuestion.choices[selectedAnswer].text,
+          userAnswer: currentQuestion.choices[choiceIndex].text,
           correctAnswer: correctChoice?.text || "",
         },
       ]);
+      playIncorrectSound();
     }
     setAnsweredCount(answeredCount + 1);
     setShowResult(true);
@@ -106,15 +107,7 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
           />
 
           <div className="action-buttons">
-            {!showResult ? (
-              <button
-                onClick={handleSubmitAnswer}
-                disabled={selectedAnswer === null}
-                className="submit-button"
-              >
-                Submit Answer
-              </button>
-            ) : (
+            {showResult && (
               <button onClick={handleNextQuestion} className="next-button">
                 Next Question
               </button>
