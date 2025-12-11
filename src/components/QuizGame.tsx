@@ -18,7 +18,6 @@ interface QuizGameProps {
   quiz: Quiz;
   onExit: () => void;
 }
-
 export default function QuizGame({ quiz, onExit }: QuizGameProps) {
   // Randomize questions once when component mounts
   const randomizedQuestions = useMemo(() => {
@@ -46,7 +45,7 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
     // Immediately submit the answer when selected
     setSelectedAnswer(choiceIndex);
 
-    const isCorrect = currentQuestion.choices[choiceIndex].isCorrect;
+    const isCorrect = currentQuestion.choices[choiceIndex].correct;
     setIsCorrectAnswer(isCorrect);
 
     if (isCorrect) {
@@ -55,7 +54,7 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
       setTimeout(() => setShowConfetti(false), 3000);
       playCorrectSound();
     } else {
-      const correctChoice = currentQuestion.choices.find((c) => c.isCorrect);
+      const correctChoice = currentQuestion.choices.find((c) => c.correct);
       setWrongAnswers([
         ...wrongAnswers,
         {

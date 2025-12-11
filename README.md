@@ -40,11 +40,34 @@ cd quiz-game
 # Install dependencies
 npm install
 
+# Configure environment (optional)
+# Copy .env.example to .env.local and customize if needed
+cp .env.example .env.local
+
 # Run development server
 npm run dev
 ```
 
 Visit `http://localhost:5173` to see the app.
+
+### Environment Configuration
+
+The app uses different API endpoints depending on the environment:
+
+- **Development** (`.env.development`): `http://localhost:8080/api`
+- **Production** (`.env.production`): Azure Container Apps URL
+
+To override these defaults, create a `.env.local` file:
+
+```bash
+VITE_API_BASE_URL=http://localhost:8080/api
+```
+
+Environment files are loaded in this order (later files override earlier ones):
+
+1. `.env` - Shared defaults
+2. `.env.development` or `.env.production` - Environment-specific
+3. `.env.local` - Local overrides (gitignored)
 
 ## Available Scripts
 

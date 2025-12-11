@@ -1,6 +1,6 @@
 export interface QuizChoice {
   text: string;
-  isCorrect: boolean;
+  correct: boolean;
 }
 
 export interface QuizQuestion {
