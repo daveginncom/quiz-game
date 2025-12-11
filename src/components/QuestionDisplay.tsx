@@ -17,7 +17,8 @@ export default function QuestionDisplay({
   isCorrectAnswer,
   onAnswerSelect,
 }: QuestionDisplayProps) {
-  const correctAnswerText = question.choices.find((c) => c.isCorrect)?.text;
+  const correctAnswerText =
+    question.choices.find((c) => c.correct)?.text || "Unknown";
 
   return (
     <>
@@ -26,7 +27,7 @@ export default function QuestionDisplay({
         {showResult && (
           <FeedbackMessage
             isCorrect={isCorrectAnswer}
-            correctAnswerText={correctAnswerText}
+            correctAnswerText={!isCorrectAnswer ? correctAnswerText : undefined}
           />
         )}
       </div>

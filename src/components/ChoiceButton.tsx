@@ -20,7 +20,7 @@ export default function ChoiceButton({
     let className = "choice-button";
     if (isSelected) className += " selected";
     if (showResult) {
-      if (choice.isCorrect) className += " correct";
+      if (choice.correct) className += " correct";
       else if (isSelected) className += " incorrect";
     }
     return className;

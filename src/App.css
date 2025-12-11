@@ -472,3 +472,68 @@
     font-size: 0.9rem;
   }
 }
+
+/* Loading and Error States */
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 1rem;
+}
+
+.loading-message {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  .loading-message {
+    color: #aaa;
+  }
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 1.1rem;
+  padding: 1rem;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  max-width: 500px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .error-message {
+    background-color: #4a1f1f;
+    border-color: #8b2f2f;
+    color: #ff6b6b;
+  }
+}
+
+.back-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #6c757d;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}
+
+@media (prefers-color-scheme: dark) {
+  .back-button {
+    background-color: #4a5156;
+  }
+
+  .back-button:hover {
+    background-color: #5a6268;
+  }
+}

@@ -6,7 +6,7 @@ import ChoiceButton from "./ChoiceButton";
 describe("ChoiceButton", () => {
   const mockChoice = {
     text: "Test Choice",
-    isCorrect: true,
+    correct: true,
   };
 
   it("should render choice text", () => {
@@ -91,7 +91,7 @@ describe("ChoiceButton", () => {
   });
 
   it("should show incorrect feedback styling", () => {
-    const incorrectChoice = { text: "Wrong Choice", isCorrect: false };
+    const incorrectChoice = { text: "Wrong Choice", correct: false };
     const mockOnSelect = vi.fn();
     const { container } = render(
       <ChoiceButton
