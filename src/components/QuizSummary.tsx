@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import Confetti from "react-confetti";
 import { getLetterGrade } from "../utils/quizUtils";
+import { saveQuizScore, clearQuizProgress } from "../utils/localStorage";
 
 interface WrongAnswer {
   question: string;
@@ -8,6 +10,8 @@ interface WrongAnswer {
 }
 
 interface QuizSummaryProps {
+  quizId: string;
+  quizTitle: string;
   correctCount: number;
   totalQuestions: number;
   wrongAnswers: WrongAnswer[];
@@ -15,6 +19,8 @@ interface QuizSummaryProps {
 }
 
 export default function QuizSummary({
+  quizId,
+  quizTitle,
   correctCount,
   totalQuestions,
   wrongAnswers,
@@ -23,6 +29,21 @@ export default function QuizSummary({
   const percentage = (correctCount / totalQuestions) * 100;
   const letterGrade = getLetterGrade(percentage);
   const isPerfectScore = wrongAnswers.length === 0;
+
+  // Save score to history when component mounts and clear progress
+  useEffect(() => {
+    saveQuizScore({
+      quizId,
+      quizTitle,
+      score: correctCount,
+      totalQuestions,
+      percentage,
+      grade: letterGrade,
+      completedAt: Date.now(),
+    });
+    clearQuizProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Only run once on mount
 
   return (
     <div className="quiz-complete">

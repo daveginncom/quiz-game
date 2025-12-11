@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import type { Quiz } from "./models/Quiz";
 import { fetchQuizById } from "./services/quizApi";
+import { loadQuizProgress, clearQuizProgress } from "./utils/localStorage";
 import MainMenu from "./components/MainMenu";
 import QuizGame from "./components/QuizGame";
 
@@ -10,6 +11,14 @@ function App() {
   const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Restore progress on mount
+  useEffect(() => {
+    const savedProgress = loadQuizProgress();
+    if (savedProgress) {
+      setSelectedQuizId(savedProgress.quizId);
+    }
+  }, []);
 
   useEffect(() => {
     if (!selectedQuizId) {
@@ -35,6 +44,7 @@ function App() {
   }, [selectedQuizId]);
 
   const handleExit = () => {
+    clearQuizProgress(); // Clear progress when exiting
     setSelectedQuizId(null);
     setSelectedQuiz(null);
     setError(null);

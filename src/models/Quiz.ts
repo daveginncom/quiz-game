@@ -9,6 +9,7 @@ export interface QuizQuestion {
 }
 
 export interface Quiz {
+  id: string;
   title: string;
   questions: QuizQuestion[];
 }

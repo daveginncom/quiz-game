@@ -1,5 +1,4 @@
 import type { QuizChoice } from "../models/Quiz";
-import { choiceColors } from "../utils/quizUtils";
 
 interface ChoiceButtonProps {
   choice: QuizChoice;
@@ -17,7 +16,7 @@ export default function ChoiceButton({
   onSelect,
 }: ChoiceButtonProps) {
   const getClassName = () => {
-    let className = "choice-button";
+    let className = `choice-button choice-button-${index}`;
     if (isSelected) className += " selected";
     if (showResult) {
       if (choice.correct) className += " correct";
@@ -29,9 +28,6 @@ export default function ChoiceButton({
   return (
     <button
       className={getClassName()}
-      style={{
-        backgroundColor: choiceColors[index % choiceColors.length],
-      }}
       onClick={onSelect}
       disabled={showResult}
     >

@@ -3,6 +3,10 @@ import Confetti from "react-confetti";
 import type { Quiz } from "../models/Quiz";
 import { shuffleArray } from "../utils/quizUtils";
 import { playCorrectSound, playIncorrectSound } from "../utils/soundEffects";
+import {
+  saveQuizProgress,
+  loadQuizProgress,
+} from "../utils/localStorage";
 import QuizHeader from "./QuizHeader";
 import QuizStats from "./QuizStats";
 import QuestionDisplay from "./QuestionDisplay";
@@ -19,25 +23,77 @@ interface QuizGameProps {
   onExit: () => void;
 }
 export default function QuizGame({ quiz, onExit }: QuizGameProps) {
-  // Randomize questions once when component mounts
+  // Try to restore saved progress first
+  const savedProgress = loadQuizProgress();
+  const shouldRestore = savedProgress && savedProgress.quizId === quiz.id;
+
+  // Randomize questions once when component mounts, or use saved randomized questions
   const randomizedQuestions = useMemo(() => {
+    if (shouldRestore && savedProgress.randomizedQuestions) {
+      return savedProgress.randomizedQuestions;
+    }
     return shuffleArray(quiz.questions).map((q) => ({
       ...q,
       choices: shuffleArray(q.choices),
     }));
-  }, [quiz]);
+  }, [quiz, shouldRestore, savedProgress]);
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [correctCount, setCorrectCount] = useState(0);
-  const [answeredCount, setAnsweredCount] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [showResult, setShowResult] = useState(false);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(
+    shouldRestore ? savedProgress.currentQuestionIndex : 0
+  );
+  const [correctCount, setCorrectCount] = useState(
+    shouldRestore ? savedProgress.correctCount : 0
+  );
+  const [answeredCount, setAnsweredCount] = useState(
+    shouldRestore ? savedProgress.answeredCount : 0
+  );
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(
+    shouldRestore ? savedProgress.selectedAnswer : null
+  );
+  const [showResult, setShowResult] = useState(
+    shouldRestore ? savedProgress.showResult : false
+  );
   const [showConfetti, setShowConfetti] = useState(false);
-  const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
-  const [wrongAnswers, setWrongAnswers] = useState<WrongAnswer[]>([]);
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState(
+    shouldRestore ? savedProgress.isCorrectAnswer : false
+  );
+  const [wrongAnswers, setWrongAnswers] = useState<WrongAnswer[]>(
+    shouldRestore ? savedProgress.wrongAnswers : []
+  );
 
   const currentQuestion = randomizedQuestions[currentQuestionIndex];
   const totalQuestions = randomizedQuestions.length;
+
+  // Save progress to localStorage whenever state changes
+  useEffect(() => {
+    if (answeredCount > 0) {
+      // Only save if quiz has started
+      saveQuizProgress({
+        quizId: quiz.id,
+        quizTitle: quiz.title,
+        currentQuestionIndex,
+        correctCount,
+        answeredCount,
+        selectedAnswer,
+        showResult,
+        isCorrectAnswer,
+        wrongAnswers,
+        randomizedQuestions,
+        timestamp: Date.now(),
+      });
+    }
+  }, [
+    quiz.id,
+    quiz.title,
+    currentQuestionIndex,
+    correctCount,
+    answeredCount,
+    selectedAnswer,
+    showResult,
+    isCorrectAnswer,
+    wrongAnswers,
+    randomizedQuestions,
+  ]);
 
   const handleAnswerSelect = (choiceIndex: number) => {
     if (showResult) return;
@@ -136,6 +192,8 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
         </>
       ) : (
         <QuizSummary
+          quizId={quiz.id}
+          quizTitle={quiz.title}
           correctCount={correctCount}
           totalQuestions={totalQuestions}
           wrongAnswers={wrongAnswers}
