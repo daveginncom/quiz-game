@@ -175,6 +175,22 @@
   align-items: center;
 }
 
+.choice-button-0 {
+  background-color: #3498db;
+}
+
+.choice-button-1 {
+  background-color: #e74c3c;
+}
+
+.choice-button-2 {
+  background-color: #2ecc71;
+}
+
+.choice-button-3 {
+  background-color: #f39c12;
+}
+
 @media (max-width: 850px) {
   .choice-button {
     padding: 1rem;
@@ -535,5 +551,134 @@
 
   .back-button:hover {
     background-color: #5a6268;
+  }
+}
+
+/* Score History Styles */
+.history-toggle-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 1rem;
+}
+
+.history-toggle-button:hover {
+  background-color: #0056b3;
+}
+
+.history-list {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.quiz-history-section {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-history-section h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.history-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.history-item {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 4px solid #007bff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.history-score {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.history-grade {
+  font-size: 1rem;
+  color: #666;
+}
+
+.history-date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.no-history {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 2rem;
+}
+
+@media (max-width: 850px) {
+  .history-list {
+    max-width: 100%;
+  }
+
+  .quiz-history-section {
+    padding: 1rem;
+  }
+
+  .history-item {
+    padding: 0.75rem;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .history-toggle-button {
+    background-color: #0d6efd;
+  }
+
+  .history-toggle-button:hover {
+    background-color: #0a58ca;
+  }
+
+  .quiz-history-section {
+    background-color: #2d2d2d;
+  }
+
+  .quiz-history-section h3 {
+    color: #e0e0e0;
+  }
+
+  .history-item {
+    background-color: #1a1a1a;
+    border-left-color: #0d6efd;
+  }
+
+  .history-score {
+    color: #e0e0e0;
+  }
+
+  .history-grade {
+    color: #b0b0b0;
+  }
+
+  .history-date {
+    color: #888;
+  }
+
+  .no-history {
+    color: #b0b0b0;
   }
 }
