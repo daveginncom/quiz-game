@@ -28,11 +28,7 @@ export default function ChoiceButton({
   };
 
   return (
-    <button
-      className={getClassName()}
-      onClick={onSelect}
-      disabled={showResult}
-    >
+    <button className={getClassName()} onClick={onSelect} disabled={showResult}>
       {choice.text}
     </button>
   );

@@ -8,8 +8,8 @@ vi.mock("../services/quizApi");
 
 describe("MainMenu", () => {
   const mockQuizList = [
-    { id: "1", title: "British America" },
-    { id: "2", title: "World History" },
+    { id: 1, title: "British America" },
+    { id: 2, title: "World History" },
   ];
 
   beforeEach(() => {
@@ -59,7 +59,7 @@ describe("MainMenu", () => {
     await user.click(quizButton);
 
     expect(mockOnQuizSelect).toHaveBeenCalledTimes(1);
-    expect(mockOnQuizSelect).toHaveBeenCalledWith("1");
+    expect(mockOnQuizSelect).toHaveBeenCalledWith(1);
   });
 
   it("should display error message when fetch fails", async () => {

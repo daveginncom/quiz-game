@@ -20,7 +20,7 @@ describe("localStorage utilities", () => {
 
   describe("Quiz Progress", () => {
     const mockProgress: QuizProgress = {
-      quizId: "quiz-1",
+      quizId: 1,
       quizTitle: "Test Quiz",
       currentQuestionIndex: 2,
       correctCount: 1,
@@ -91,7 +91,7 @@ describe("localStorage utilities", () => {
 
   describe("Quiz Score History", () => {
     const mockScore1: QuizScore = {
-      quizId: "quiz-1",
+      quizId: 1,
       quizTitle: "Test Quiz 1",
       score: 8,
       totalQuestions: 10,
@@ -101,7 +101,7 @@ describe("localStorage utilities", () => {
     };
 
     const mockScore2: QuizScore = {
-      quizId: "quiz-2",
+      quizId: 2,
       quizTitle: "Test Quiz 2",
       score: 10,
       totalQuestions: 10,
@@ -136,20 +136,18 @@ describe("localStorage utilities", () => {
       saveQuizScore(mockScore2);
       saveQuizScore({ ...mockScore1, completedAt: Date.now() });
 
-      const quiz1History = getQuizHistory("quiz-1");
+      const quiz1History = getQuizHistory(1);
       expect(quiz1History).toHaveLength(2);
-      expect(quiz1History.every((score) => score.quizId === "quiz-1")).toBe(
-        true
-      );
+      expect(quiz1History.every((score) => score.quizId === 1)).toBe(true);
 
-      const quiz2History = getQuizHistory("quiz-2");
+      const quiz2History = getQuizHistory(2);
       expect(quiz2History).toHaveLength(1);
-      expect(quiz2History[0].quizId).toBe("quiz-2");
+      expect(quiz2History[0].quizId).toBe(2);
     });
 
     it("should return empty array for quiz with no history", () => {
       saveQuizScore(mockScore1);
-      const history = getQuizHistory("nonexistent-quiz");
+      const history = getQuizHistory(999);
       expect(history).toEqual([]);
     });
 
@@ -198,7 +196,7 @@ describe("localStorage utilities", () => {
       saveQuizScore(oldScore);
       saveQuizScore(recentScore);
 
-      const history = getQuizHistory("quiz-1");
+      const history = getQuizHistory(1);
       expect(history).toHaveLength(2);
       expect(history[0]).toEqual(oldScore);
       expect(history[1]).toEqual(recentScore);
@@ -214,7 +212,7 @@ describe("localStorage utilities", () => {
 
     it("should handle multiple saves and loads", () => {
       const progress1: QuizProgress = {
-        quizId: "quiz-1",
+        quizId: 1,
         quizTitle: "Quiz 1",
         currentQuestionIndex: 0,
         correctCount: 0,
@@ -229,23 +227,23 @@ describe("localStorage utilities", () => {
 
       const progress2: QuizProgress = {
         ...progress1,
-        quizId: "quiz-2",
+        quizId: 2,
         currentQuestionIndex: 5,
       };
 
       saveQuizProgress(progress1);
       const loaded1 = loadQuizProgress();
-      expect(loaded1?.quizId).toBe("quiz-1");
+      expect(loaded1?.quizId).toBe(1);
 
       saveQuizProgress(progress2);
       const loaded2 = loadQuizProgress();
-      expect(loaded2?.quizId).toBe("quiz-2");
+      expect(loaded2?.quizId).toBe(2);
       expect(loaded2?.currentQuestionIndex).toBe(5);
     });
 
     it("should handle null and undefined values gracefully", () => {
       const progress: QuizProgress = {
-        quizId: "quiz-1",
+        quizId: 1,
         quizTitle: "Test",
         currentQuestionIndex: 0,
         correctCount: 0,

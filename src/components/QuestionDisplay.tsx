@@ -39,7 +39,9 @@ export default function QuestionDisplay({
             index={index}
             isSelected={selectedAnswer === index}
             showResult={showResult}
-            isCorrect={showResult && isCorrectAnswer && selectedAnswer === index}
+            isCorrect={
+              showResult && isCorrectAnswer && selectedAnswer === index
+            }
             onSelect={() => onAnswerSelect(index)}
           />
         ))}

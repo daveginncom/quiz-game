@@ -4,10 +4,7 @@ import type { QuizPlayDTO } from "../models/Quiz";
 import { shuffleArray } from "../utils/quizUtils";
 import { playCorrectSound, playIncorrectSound } from "../utils/soundEffects";
 import { submitAnswer } from "../services/quizApi";
-import {
-  saveQuizProgress,
-  loadQuizProgress,
-} from "../utils/localStorage";
+import { saveQuizProgress, loadQuizProgress } from "../utils/localStorage";
 import QuizHeader from "./QuizHeader";
 import QuizStats from "./QuizStats";
 import QuestionDisplay from "./QuestionDisplay";
