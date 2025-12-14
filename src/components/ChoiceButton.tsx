@@ -1,10 +1,11 @@
-import type { QuizChoice } from "../models/Quiz";
+import type { ChoicePlayDTO } from "../models/Quiz";
 
 interface ChoiceButtonProps {
-  choice: QuizChoice;
+  choice: ChoicePlayDTO;
   index: number;
   isSelected: boolean;
   showResult: boolean;
+  isCorrect: boolean;
   onSelect: () => void;
 }
 
@@ -13,13 +14,14 @@ export default function ChoiceButton({
   index,
   isSelected,
   showResult,
+  isCorrect,
   onSelect,
 }: ChoiceButtonProps) {
   const getClassName = () => {
     let className = `choice-button choice-button-${index}`;
     if (isSelected) className += " selected";
     if (showResult) {
-      if (choice.correct) className += " correct";
+      if (isCorrect) className += " correct";
       else if (isSelected) className += " incorrect";
     }
     return className;

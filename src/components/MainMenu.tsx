@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import type { QuizListItem } from "../services/quizApi";
+import type { QuizListItem } from "../models/Quiz";
 import { fetchQuizList } from "../services/quizApi";
 import { getQuizHistory } from "../utils/localStorage";
 
 interface MainMenuProps {
-  onQuizSelect: (quizId: string) => void;
+  onQuizSelect: (quizId: number) => void;
 }
 
 export default function MainMenu({ onQuizSelect }: MainMenuProps) {
@@ -14,20 +14,32 @@ export default function MainMenu({ onQuizSelect }: MainMenuProps) {
   const [showHistory, setShowHistory] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+
     const loadQuizzes = async () => {
       try {
         setLoading(true);
         const quizList = await fetchQuizList();
-        setQuizzes(quizList);
-        setError(null);
+        if (!cancelled) {
+          setQuizzes(quizList);
+          setError(null);
+        }
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load quizzes");
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load quizzes");
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     };
 
     loadQuizzes();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (

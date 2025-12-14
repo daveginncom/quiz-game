@@ -1,7 +1,7 @@
-import type { QuizQuestion } from "../models/Quiz";
+import type { QuestionPlayDTO } from "../models/Quiz";
 
 export interface QuizProgress {
-  quizId: string;
+  quizId: number;
   quizTitle: string;
   currentQuestionIndex: number;
   correctCount: number;
@@ -14,12 +14,12 @@ export interface QuizProgress {
     userAnswer: string;
     correctAnswer: string;
   }[];
-  randomizedQuestions: QuizQuestion[];
+  randomizedQuestions: QuestionPlayDTO[];
   timestamp: number;
 }
 
 export interface QuizScore {
-  quizId: string;
+  quizId: number;
   quizTitle: string;
   score: number;
   totalQuestions: number;
@@ -81,7 +81,7 @@ export function loadQuizHistory(): QuizScore[] {
   }
 }
 
-export function getQuizHistory(quizId: string): QuizScore[] {
+export function getQuizHistory(quizId: number): QuizScore[] {
   const history = loadQuizHistory();
   return history.filter((score) => score.quizId === quizId);
 }

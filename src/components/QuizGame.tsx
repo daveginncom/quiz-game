@@ -1,8 +1,9 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import Confetti from "react-confetti";
-import type { Quiz } from "../models/Quiz";
+import type { QuizPlayDTO } from "../models/Quiz";
 import { shuffleArray } from "../utils/quizUtils";
 import { playCorrectSound, playIncorrectSound } from "../utils/soundEffects";
+import { submitAnswer } from "../services/quizApi";
 import {
   saveQuizProgress,
   loadQuizProgress,
@@ -19,7 +20,7 @@ interface WrongAnswer {
 }
 
 interface QuizGameProps {
-  quiz: Quiz;
+  quiz: QuizPlayDTO;
   onExit: () => void;
 }
 export default function QuizGame({ quiz, onExit }: QuizGameProps) {
@@ -60,6 +61,7 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
   const [wrongAnswers, setWrongAnswers] = useState<WrongAnswer[]>(
     shouldRestore ? savedProgress.wrongAnswers : []
   );
+  const [correctAnswerText, setCorrectAnswerText] = useState<string>("");
 
   const currentQuestion = randomizedQuestions[currentQuestionIndex];
   const totalQuestions = randomizedQuestions.length;
@@ -95,34 +97,49 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
     randomizedQuestions,
   ]);
 
-  const handleAnswerSelect = (choiceIndex: number) => {
+  const handleAnswerSelect = async (choiceIndex: number) => {
     if (showResult) return;
 
-    // Immediately submit the answer when selected
+    // Immediately show selection
     setSelectedAnswer(choiceIndex);
 
-    const isCorrect = currentQuestion.choices[choiceIndex].correct;
-    setIsCorrectAnswer(isCorrect);
+    try {
+      // Submit answer to server for validation
+      const selectedChoice = currentQuestion.choices[choiceIndex];
+      const result = await submitAnswer(quiz.id, currentQuestion.id, {
+        choiceId: selectedChoice.id,
+      });
 
-    if (isCorrect) {
-      setCorrectCount(correctCount + 1);
-      setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 3000);
-      playCorrectSound();
-    } else {
-      const correctChoice = currentQuestion.choices.find((c) => c.correct);
-      setWrongAnswers([
-        ...wrongAnswers,
-        {
-          question: currentQuestion.question,
-          userAnswer: currentQuestion.choices[choiceIndex].text,
-          correctAnswer: correctChoice?.text || "",
-        },
-      ]);
-      playIncorrectSound();
+      setIsCorrectAnswer(result.correct);
+
+      // Find the correct choice text using the correctChoiceId from server
+      const correctChoice = currentQuestion.choices.find(
+        (c) => c.id === result.correctChoiceId
+      );
+      setCorrectAnswerText(correctChoice?.text || "");
+
+      if (result.correct) {
+        setCorrectCount(correctCount + 1);
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 3000);
+        playCorrectSound();
+      } else {
+        setWrongAnswers([
+          ...wrongAnswers,
+          {
+            question: currentQuestion.question,
+            userAnswer: selectedChoice.text,
+            correctAnswer: correctChoice?.text || "",
+          },
+        ]);
+        playIncorrectSound();
+      }
+      setAnsweredCount(answeredCount + 1);
+      setShowResult(true);
+    } catch (error) {
+      console.error("Failed to submit answer:", error);
+      // Handle error - maybe show error message to user
     }
-    setAnsweredCount(answeredCount + 1);
-    setShowResult(true);
   };
 
   const handleNextQuestion = useCallback(() => {
@@ -132,6 +149,7 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
       setShowResult(false);
       setShowConfetti(false);
       setIsCorrectAnswer(false);
+      setCorrectAnswerText("");
     }
   }, [currentQuestionIndex, totalQuestions]);
 
@@ -179,6 +197,7 @@ export default function QuizGame({ quiz, onExit }: QuizGameProps) {
             selectedAnswer={selectedAnswer}
             showResult={showResult}
             isCorrectAnswer={isCorrectAnswer}
+            correctAnswerText={correctAnswerText}
             onAnswerSelect={handleAnswerSelect}
           />
 

@@ -10,7 +10,7 @@ interface WrongAnswer {
 }
 
 interface QuizSummaryProps {
-  quizId: string;
+  quizId: number;
   quizTitle: string;
   correctCount: number;
   totalQuestions: number;
