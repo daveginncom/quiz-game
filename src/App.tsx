@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import type { Quiz } from "./models/Quiz";
-import { fetchQuizById } from "./services/quizApi";
+import type { QuizPlayDTO } from "./models/Quiz";
+import { fetchQuizForPlay } from "./services/quizApi";
 import { loadQuizProgress, clearQuizProgress } from "./utils/localStorage";
 import MainMenu from "./components/MainMenu";
 import QuizGame from "./components/QuizGame";
 
 function App() {
-  const [selectedQuizId, setSelectedQuizId] = useState<string | null>(null);
-  const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
+  const [selectedQuizId, setSelectedQuizId] = useState<number | null>(null);
+  const [selectedQuiz, setSelectedQuiz] = useState<QuizPlayDTO | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,21 +26,33 @@ function App() {
       return;
     }
 
+    let cancelled = false;
+
     const loadQuiz = async () => {
       try {
         setLoading(true);
         setError(null);
-        const quiz = await fetchQuizById(selectedQuizId);
-        setSelectedQuiz(quiz);
+        const quiz = await fetchQuizForPlay(selectedQuizId);
+        if (!cancelled) {
+          setSelectedQuiz(quiz);
+        }
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load quiz");
-        setSelectedQuizId(null);
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load quiz");
+          setSelectedQuizId(null);
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     };
 
     loadQuiz();
+
+    return () => {
+      cancelled = true;
+    };
   }, [selectedQuizId]);
 
   const handleExit = () => {

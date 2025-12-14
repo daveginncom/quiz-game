@@ -5,8 +5,8 @@ import ChoiceButton from "./ChoiceButton";
 
 describe("ChoiceButton", () => {
   const mockChoice = {
+    id: 1,
     text: "Test Choice",
-    correct: true,
   };
 
   it("should render choice text", () => {
@@ -18,6 +18,7 @@ describe("ChoiceButton", () => {
         onSelect={mockOnSelect}
         isSelected={false}
         showResult={false}
+        isCorrect={false}
       />
     );
 
@@ -34,6 +35,7 @@ describe("ChoiceButton", () => {
         onSelect={mockOnSelect}
         isSelected={false}
         showResult={false}
+        isCorrect={false}
       />
     );
 
@@ -51,6 +53,7 @@ describe("ChoiceButton", () => {
         onSelect={mockOnSelect}
         isSelected={false}
         showResult={true}
+        isCorrect={false}
       />
     );
 
@@ -67,6 +70,7 @@ describe("ChoiceButton", () => {
         onSelect={mockOnSelect}
         isSelected={true}
         showResult={false}
+        isCorrect={false}
       />
     );
 
@@ -83,6 +87,7 @@ describe("ChoiceButton", () => {
         onSelect={mockOnSelect}
         isSelected={true}
         showResult={true}
+        isCorrect={true}
       />
     );
 
@@ -91,7 +96,7 @@ describe("ChoiceButton", () => {
   });
 
   it("should show incorrect feedback styling", () => {
-    const incorrectChoice = { text: "Wrong Choice", correct: false };
+    const incorrectChoice = { id: 2, text: "Wrong Choice" };
     const mockOnSelect = vi.fn();
     const { container } = render(
       <ChoiceButton
@@ -100,6 +105,7 @@ describe("ChoiceButton", () => {
         onSelect={mockOnSelect}
         isSelected={true}
         showResult={true}
+        isCorrect={false}
       />
     );
 

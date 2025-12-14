@@ -1,12 +1,13 @@
-import type { QuizQuestion } from "../models/Quiz";
+import type { QuestionPlayDTO } from "../models/Quiz";
 import FeedbackMessage from "./FeedbackMessage";
 import ChoiceButton from "./ChoiceButton";
 
 interface QuestionDisplayProps {
-  question: QuizQuestion;
+  question: QuestionPlayDTO;
   selectedAnswer: number | null;
   showResult: boolean;
   isCorrectAnswer: boolean;
+  correctAnswerText?: string;
   onAnswerSelect: (index: number) => void;
 }
 
@@ -15,11 +16,9 @@ export default function QuestionDisplay({
   selectedAnswer,
   showResult,
   isCorrectAnswer,
+  correctAnswerText,
   onAnswerSelect,
 }: QuestionDisplayProps) {
-  const correctAnswerText =
-    question.choices.find((c) => c.correct)?.text || "Unknown";
-
   return (
     <>
       <div className="question-section">
@@ -35,11 +34,12 @@ export default function QuestionDisplay({
       <div className="choices-section">
         {question.choices.map((choice, index) => (
           <ChoiceButton
-            key={index}
+            key={choice.id}
             choice={choice}
             index={index}
             isSelected={selectedAnswer === index}
             showResult={showResult}
+            isCorrect={showResult && isCorrectAnswer && selectedAnswer === index}
             onSelect={() => onAnswerSelect(index)}
           />
         ))}
