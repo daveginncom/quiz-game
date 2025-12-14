@@ -26,7 +26,9 @@ export default function MainMenu({ onQuizSelect }: MainMenuProps) {
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : "Failed to load quizzes");
+          setError(
+            err instanceof Error ? err.message : "Failed to load quizzes"
+          );
         }
       } finally {
         if (!cancelled) {
